@@ -10,6 +10,8 @@ public class Field {
     private static final char DEFAULT_FIELD_VALUE = ' ';
     private int fieldSize;
     private char gameField[][];
+    private char winner = DEFAULT_FIELD_VALUE;
+    private int emptyCells = 0;
     public Field(int size) {
         gameField = new char[size][size];
         fieldSize = size;
@@ -19,15 +21,20 @@ public class Field {
         this(DEFAULT_FIELD_SIZE);
     }
     public void eraseField() {
+        winner = DEFAULT_FIELD_VALUE;
         for(int i = 0; i<fieldSize; i++) {
             for(int j = 0; j<fieldSize; j++)
                 eraseCell(i,j);
         }
     }
-    public void eraseCell(int row, int column) {
+    private void eraseCell(int row, int column) {
         setCellValue(row, column, DEFAULT_FIELD_VALUE);
     }
     public void setCellValue(int row, int column, char value) {
+        if(value == DEFAULT_FIELD_VALUE)
+            emptyCells++;
+        else
+            emptyCells--;
         gameField[row][column] = value;
     }
     public void setFieldSize(int size) {
@@ -76,5 +83,37 @@ public class Field {
             }
         }
         return true;
+    }
+    public boolean isDraw() {
+        if(emptyCells == 0 && !haveWinner())
+            return true;
+        return false;
+    }
+    public boolean haveWinner() {
+        //is enough turns for win combination?
+        if(emptyCells > fieldSize*fieldSize-fieldSize)
+            return false;
+        if(checkWinDiagonal(0)) {
+            winner = gameField[0][0];
+            return true;
+        }
+        if(checkWinDiagonal(fieldSize-1)) {
+            winner = gameField[fieldSize-1][0];
+            return true;
+        }
+        for(int i = 0; i < fieldSize; i++) {
+            if(checWinRow(i)) {
+                winner = gameField[i][0];
+                return true;
+            }
+            if(checkWinColumn(i)) {
+                winner = gameField[0][i];
+                return true;
+            }
+        }
+        return false;
+    }
+    public char getWinner() {
+        return winner;
     }
 }
