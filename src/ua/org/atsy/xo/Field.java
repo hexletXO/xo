@@ -38,4 +38,43 @@ public class Field {
     public char getCellValue(int row, int column) {
         return gameField[row][column];
     }
+    private boolean checWinRow(int rowNum) {
+        if(gameField[rowNum][0] == DEFAULT_FIELD_VALUE)
+            return false;
+        char tmp = gameField[rowNum][0];
+        for(int i = 1; i < fieldSize; i++) {
+            if(gameField[rowNum][i] != tmp || gameField[rowNum][i] == DEFAULT_FIELD_VALUE)
+                return false;
+        }
+        return true;
+    }
+    private boolean checkWinColumn(int colNum) {
+        if(gameField[0][colNum] == DEFAULT_FIELD_VALUE)
+            return false;
+        char tmp = gameField[0][colNum];
+        for(int i = 1; i < fieldSize; i++) {
+            if(gameField[i][colNum] != tmp || gameField[i][colNum] == DEFAULT_FIELD_VALUE)
+                return false;
+        }
+        return true;
+    }
+    private boolean checkWinDiagonal(int startFrom) {
+        if(gameField[startFrom][0] == DEFAULT_FIELD_VALUE)
+            return false;
+        char tmp = gameField[startFrom][0];
+        int j = startFrom;
+        for(int i = 0; i < fieldSize-1; i++) {
+            if(startFrom == 0) {
+                if(gameField[i+1][j+1] != tmp || gameField[i+1][j+1] == DEFAULT_FIELD_VALUE)
+                    return false;
+                j++;
+            }
+            else {
+                if(gameField[j-1][i+1] != tmp || gameField[j-1][i+1] == DEFAULT_FIELD_VALUE)
+                    return false;
+                j--;
+            }
+        }
+        return true;
+    }
 }
