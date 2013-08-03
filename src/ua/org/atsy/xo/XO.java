@@ -8,10 +8,11 @@ import java.util.Scanner;
 
 public class XO {
     private boolean running = true;
-    Scanner in;
+    private GameStats stats;
+    private Scanner in;
     public XO() {
         in = new Scanner(System.in);
-        System.out.println(askUserInt("Int request"));
+        stats = new GameStats();
     }
     private String askUser(String question) {
         printQuestion(question);
