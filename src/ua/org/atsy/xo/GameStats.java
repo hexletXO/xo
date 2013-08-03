@@ -41,4 +41,7 @@ public class GameStats {
         out += "Player scores: " + scores[0] + ":" + scores[1] + "\n";
         System.out.println(out);
     }
+    public void increaseGameFinished() {
+        gamesFinished += 1;
+    }
 }
