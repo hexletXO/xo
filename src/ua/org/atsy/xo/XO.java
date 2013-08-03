@@ -5,12 +5,15 @@ See the file LICENSE for copying permission.
 */
 package ua.org.atsy.xo;
 import ua.org.atsy.xo.defs.GameType;
+import ua.org.atsy.xo.player.Player;
 import java.util.Scanner;
 
 public class XO {
     private boolean running = true;
     private GameStats stats;
     private Scanner in;
+    private Player player1;
+    private Player player2;
     public XO() {
         in = new Scanner(System.in);
         stats = new GameStats();
@@ -35,7 +38,17 @@ public class XO {
         in.close();
     }
     private void startNewGame(GameType type) {
-        //stub
+        player1 = new Player(askUser("Enter name for first player"),'x');
+        if(type == GameType.PVP)
+            player2 = new Player(askUser("Enter name for second player"),'o');
+        else if(type == GameType.PVC) {
+            System.out.println("This game type not implementer yet");
+            return;
+        }
+        else {
+            System.out.println("This game type not implementer yet");
+            return;
+        }
     }
     private void printQuestion(String question) {
         System.out.print(question + ": ");
