@@ -29,13 +29,38 @@ public class XO {
     }
     public void mainLoop() {
         while(running) {
-            if(askUser("Exit? [y/n]").equals("y")) {
-                running = false;
-            }
+            mainMenu();
         }
         in.close();
     }
+    private void startNewGame() {
+        //stub
+    }
     private void printQuestion(String question) {
         System.out.print(question + ": ");
+    }
+    private void mainMenu() {
+        String answer;
+        String menu = "Menu.\n" +
+                "p - player vs player game\n" +
+                "c - player vs cpu game\n" +
+                "n - player vs player via LAN\n" +
+                "e - exit\n" +
+                "Your choice [p/c/n/e]";
+        while(true) {
+            answer = askUser(menu);
+            if(answer.equals("p")) {
+                startNewGame();
+            } else if(answer.equals("c")) {
+                startNewGame();
+            } else if(answer.equals("n")) {
+                startNewGame();
+            } else if(answer.equals("e")) {
+                running = false;
+                return;
+            } else {
+                System.out.println("Incorrect input!");
+            }
+        }
     }
 }
