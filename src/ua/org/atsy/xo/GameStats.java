@@ -35,5 +35,9 @@ public class GameStats {
     public void increaseScores(int playerNum) {
         scores[playerNum]++;
     }
-
+    public void printStats() {
+        String out = "Games played: " + gamesFinished + "\n";
+        out += "Player scores: " + scores[0] + ":" + scores[1];
+        System.out.println(out);
+    }
 }
