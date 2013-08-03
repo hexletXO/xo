@@ -45,6 +45,11 @@ public class Field {
     public char getCellValue(int row, int column) {
         return gameField[row][column];
     }
+
+    public int getFieldSize() {
+        return fieldSize;
+    }
+
     private boolean checWinRow(int rowNum) {
         if(gameField[rowNum][0] == DEFAULT_FIELD_VALUE)
             return false;
