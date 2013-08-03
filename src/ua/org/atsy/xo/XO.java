@@ -52,6 +52,7 @@ public class XO {
             return;
         }
         stats.resetTurns();
+        field.eraseField();
     }
     private void printQuestion(String question) {
         System.out.print(question + ": ");
