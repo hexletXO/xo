@@ -14,9 +14,11 @@ public class XO {
     private Scanner in;
     private Player player1;
     private Player player2;
+    private Field field;
     public XO() {
         in = new Scanner(System.in);
         stats = new GameStats();
+        field = new Field();
     }
     private String askUser(String question) {
         printQuestion(question);
@@ -49,6 +51,7 @@ public class XO {
             System.out.println("This game type not implementer yet");
             return;
         }
+        stats.resetTurns();
     }
     private void printQuestion(String question) {
         System.out.print(question + ": ");
