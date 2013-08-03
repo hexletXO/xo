@@ -28,7 +28,7 @@ public class XO {
     }
     public void mainLoop() {
         while(running) {
-            if(askUser("Exit? y/n").equals("y")) {
+            if(askUser("Exit? [y/n]").equals("y")) {
                 running = false;
             }
         }
