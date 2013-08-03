@@ -7,6 +7,7 @@ package ua.org.atsy.xo;
 import ua.org.atsy.xo.defs.GameType;
 import ua.org.atsy.xo.player.Player;
 import java.util.Scanner;
+import java.util.Random;
 
 public class XO {
     private boolean running = true;
@@ -14,6 +15,7 @@ public class XO {
     private Scanner in;
     private Player player1;
     private Player player2;
+    private Player turnPlayer;
     private Field field;
     public XO() {
         in = new Scanner(System.in);
@@ -53,6 +55,7 @@ public class XO {
         }
         stats.resetTurns();
         field.eraseField();
+        firstTurnPlayerRandom();
     }
     private void printQuestion(String question) {
         System.out.print(question + ": ");
@@ -83,5 +86,13 @@ public class XO {
                 System.out.println("Incorrect input!");
             }
         }
+    }
+    private void firstTurnPlayerRandom() {
+        Random rnd = new Random();
+        if(rnd.nextInt(100)%2 == 0)
+            turnPlayer = player1;
+        else
+            turnPlayer = player2;
+        System.out.println("In this round " + turnPlayer.getName() + " chosen for first turn");
     }
 }
