@@ -37,6 +37,7 @@ public class GameStats {
     }
     public void printStats() {
         String out = "Games played: " + gamesFinished + "\n";
+        out += "Draw in " + (gamesFinished - scores[0] + scores[1]) + " games.\n";
         out += "Player scores: " + scores[0] + ":" + scores[1];
         System.out.println(out);
     }
