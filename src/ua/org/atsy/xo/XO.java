@@ -4,6 +4,7 @@ Copyright (c) 2013 Evgeniy Dolgikh
 See the file LICENSE for copying permission.
 */
 package ua.org.atsy.xo;
+import ua.org.atsy.xo.defs.GameType;
 import java.util.Scanner;
 
 public class XO {
@@ -33,7 +34,7 @@ public class XO {
         }
         in.close();
     }
-    private void startNewGame() {
+    private void startNewGame(GameType type) {
         //stub
     }
     private void printQuestion(String question) {
@@ -51,11 +52,11 @@ public class XO {
         while(true) {
             answer = askUser(menu);
             if(answer.equals("p")) {
-                startNewGame();
+                startNewGame(GameType.PVP);
             } else if(answer.equals("c")) {
-                startNewGame();
+                startNewGame(GameType.PVC);
             } else if(answer.equals("n")) {
-                startNewGame();
+                startNewGame(GameType.NET);
             } else if(answer.equals("s")) {
                 stats.printStats();
             } else if(answer.equals("e")) {
