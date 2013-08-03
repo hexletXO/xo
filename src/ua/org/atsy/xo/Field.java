@@ -89,9 +89,14 @@ public class Field {
         }
         return true;
     }
-    public boolean isDraw() {
-        if(emptyCells == 0 && !haveWinner())
-            return true;
+    public boolean isDraw(boolean skipWinCheck) {
+        if(skipWinCheck) {
+            if(emptyCells == 0)
+                return true;
+        } else {
+            if(emptyCells == 0 && !haveWinner())
+                return true;
+        }
         return false;
     }
     public boolean haveWinner() {
