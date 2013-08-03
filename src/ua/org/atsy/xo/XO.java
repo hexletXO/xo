@@ -45,6 +45,7 @@ public class XO {
                 "p - player vs player game\n" +
                 "c - player vs cpu game\n" +
                 "n - player vs player via LAN\n" +
+                "s - show game stats" +
                 "e - exit\n" +
                 "Your choice [p/c/n/e]";
         while(true) {
@@ -55,6 +56,8 @@ public class XO {
                 startNewGame();
             } else if(answer.equals("n")) {
                 startNewGame();
+            } else if(answer.equals("s")) {
+                stats.printStats();
             } else if(answer.equals("e")) {
                 running = false;
                 return;
