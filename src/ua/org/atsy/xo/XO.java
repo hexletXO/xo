@@ -56,6 +56,7 @@ public class XO {
         stats.resetTurns();
         field.eraseField();
         firstTurnPlayerRandom();
+        gameLoop();
     }
     private void printQuestion(String question) {
         System.out.print(question + ": ");
@@ -98,12 +99,13 @@ public class XO {
     private void gameLoop() {
         field.printField();
         String out = "\nGame menu.\n" +
-                "x x - make turn(enter h for details)\n" +
+                "x,x - make turn(enter h for details)\n" +
                 "s - print stats\n" +
                 "p - print field again\n" +
                 "h - help\n" +
                 "a - abort match\n";
         String help = "";
+        String finishedGameMessage = "Game finished.\n";
         String answer;
         while(true) {
             field.printField();
@@ -118,18 +120,61 @@ public class XO {
                 field.eraseField();
                 stats.resetTurns();
                 return;
-            } else if(answer.length() == 3 && answer.charAt(1) == ' ') {
-                if(parseTurn(answer)) {
-
+            } else if(answer.length() == 3 && answer.charAt(1) == ',') {
+                if(!doTurn(answer)) {
+                    System.out.println("Incorrect coordinates, or cell already used!");
+                    continue;
                 }
 
-            }
-            else {
+            } else {
                 System.out.println("Incorrect input!");
+                continue;
             }
+            if(field.haveWinner()) {
+                if(player1.getSymbol() == field.getWinner()) {
+                    finishedGameMessage += "Winner is " + player1.getName();
+                    stats.increaseScores(1);
+                } else {
+                    stats.increaseScores(1);
+                    finishedGameMessage += "Winner is " + player2.getName();
+                }
+                stats.increaseGameFinished();
+                System.out.println(finishedGameMessage);
+                stats.printStats();
+                return;
+            }
+            else if(field.isDraw(false)) {
+                finishedGameMessage += "Is no winner in this match\n";
+                stats.increaseGameFinished();
+                System.out.println(finishedGameMessage);
+                stats.printStats();
+                return;
+            }
+            switchPlayer();
         }
     }
-    private boolean parseTurn(String answer) {
-        return false; //stub
+    private int[] parseCoordinates(String answer) {
+        String[] tmp = answer.split(",");
+        int[] result = new int[2];
+        result[0] = Integer.parseInt(tmp[0]);
+        result[1] = Integer.parseInt(tmp[1]);
+        return result;
+    }
+    private boolean doTurn(String answer) {
+        int[] cellCoordinates = parseCoordinates(answer);
+        for(int val: cellCoordinates) {
+            if(val <= 0 || val >= field.getFieldSize()+1 || field.getCellValue(cellCoordinates[0]-1,
+                    cellCoordinates[1]-1) != ' ')
+                return false;
+        }
+        field.setCellValue(cellCoordinates[0]-1, cellCoordinates[1]-1, turnPlayer.getSymbol());
+        stats.increaseTurn();
+        return true;
+    }
+    private void switchPlayer() {
+        if(turnPlayer == player1)
+            turnPlayer = player2;
+        else
+            turnPlayer = player1;
     }
 }
