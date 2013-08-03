@@ -95,4 +95,41 @@ public class XO {
             turnPlayer = player2;
         System.out.println("In this round " + turnPlayer.getName() + " chosen for first turn");
     }
+    private void gameLoop() {
+        field.printField();
+        String out = "\nGame menu.\n" +
+                "x x - make turn(enter h for details)\n" +
+                "s - print stats\n" +
+                "p - print field again\n" +
+                "h - help\n" +
+                "a - abort match\n";
+        String help = "";
+        String answer;
+        while(true) {
+            field.printField();
+            answer = askUser(out);
+            if(answer.equals("s"))
+                stats.printStats();
+            else if(answer.equals("p"))
+                field.printField();
+            else if(answer.equals("h"))
+                System.out.println(help);
+            else if(answer.equals("a")) {
+                field.eraseField();
+                stats.resetTurns();
+                return;
+            } else if(answer.length() == 3 && answer.charAt(1) == ' ') {
+                if(parseTurn(answer)) {
+
+                }
+
+            }
+            else {
+                System.out.println("Incorrect input!");
+            }
+        }
+    }
+    private boolean parseTurn(String answer) {
+        return false; //stub
+    }
 }
