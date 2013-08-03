@@ -116,4 +116,14 @@ public class Field {
     public char getWinner() {
         return winner;
     }
+    public void printField() {
+        String tmp = "";
+        for(int i = fieldSize; i >= 0; i--) {
+            for(int j = 0; j < fieldSize; j++) {
+                tmp += "[" + gameField[i][j] + "]";
+            }
+            tmp += "\n";
+        }
+        System.out.println(tmp);
+    }
 }
