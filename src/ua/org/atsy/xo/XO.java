@@ -11,7 +11,6 @@ public class XO {
     Scanner in;
     public XO() {
         in = new Scanner(System.in);
-
     }
     private String askUser(String question) {
         System.out.print(question + ": ");
@@ -23,5 +22,6 @@ public class XO {
                 running = false;
             }
         }
+        in.close();
     }
 }
