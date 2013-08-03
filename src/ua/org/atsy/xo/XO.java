@@ -11,10 +11,20 @@ public class XO {
     Scanner in;
     public XO() {
         in = new Scanner(System.in);
+        System.out.println(askUserInt("Int request"));
     }
     private String askUser(String question) {
-        System.out.print(question + ": ");
+        printQuestion(question);
         return  in.next();
+    }
+    private Integer askUserInt(String question) {
+        printQuestion(question);
+        while(!in.hasNextInt()) {
+            System.out.println("Incorrect input. Integer required.");
+            printQuestion(question);
+            in.next();
+        }
+        return in.nextInt();
     }
     public void mainLoop() {
         while(running) {
@@ -23,5 +33,8 @@ public class XO {
             }
         }
         in.close();
+    }
+    private void printQuestion(String question) {
+        System.out.print(question + ": ");
     }
 }
