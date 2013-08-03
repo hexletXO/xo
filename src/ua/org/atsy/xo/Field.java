@@ -119,11 +119,15 @@ public class Field {
     public void printField() {
         String tmp = "";
         for(int i = fieldSize-1; i >= 0; i--) {
+            tmp += "[" + (i+1) + "]";
             for(int j = 0; j < fieldSize; j++) {
                 tmp += "[" + gameField[i][j] + "]";
             }
             tmp += "\n";
         }
-        System.out.println(tmp);
+        System.out.print(tmp + "   ");
+        for(int k = 1; k <= fieldSize; k++)
+            System.out.print("["+k+"]");
+        System.out.println();
     }
 }
