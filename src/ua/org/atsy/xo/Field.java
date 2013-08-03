@@ -118,7 +118,7 @@ public class Field {
     }
     public void printField() {
         String tmp = "";
-        for(int i = fieldSize; i >= 0; i--) {
+        for(int i = fieldSize-1; i >= 0; i--) {
             for(int j = 0; j < fieldSize; j++) {
                 tmp += "[" + gameField[i][j] + "]";
             }
