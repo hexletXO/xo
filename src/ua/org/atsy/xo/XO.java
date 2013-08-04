@@ -67,7 +67,7 @@ public class XO {
                 "p - player vs player game\n" +
                 "c - player vs cpu game\n" +
                 "n - player vs player via LAN\n" +
-                "s - show game stats" +
+                "s - show game stats\n" +
                 "e - exit\n" +
                 "Your choice [p/c/n/e]";
         while(true) {
@@ -107,6 +107,8 @@ public class XO {
         String finishedGameMessage = "Game finished.\n";
         String answer;
         while(true) {
+            System.out.println("Match: "+ (stats.getGamesFinished()+1) + "\nTurn: " + stats.getTurn());
+            System.out.println("Player: " + turnPlayer.getName() + " [" + turnPlayer.getSymbol() + "]");
             field.printField();
             answer = askUser(out);
             if(answer.equals("s"))
