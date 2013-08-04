@@ -21,6 +21,7 @@ public class Field {
         this(DEFAULT_FIELD_SIZE);
     }
     public void eraseField() {
+        emptyCells = 0;
         winner = DEFAULT_FIELD_VALUE;
         for(int i = 0; i<fieldSize; i++) {
             for(int j = 0; j<fieldSize; j++)
