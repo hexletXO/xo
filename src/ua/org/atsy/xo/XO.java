@@ -97,7 +97,6 @@ public class XO {
         System.out.println("In this round " + turnPlayer.getName() + " chosen for first turn");
     }
     private void gameLoop() {
-        field.printField();
         String out = "\nGame menu.\n" +
                 "x,x - make turn(enter h for details)\n" +
                 "s - print stats\n" +
