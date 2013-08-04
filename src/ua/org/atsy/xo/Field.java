@@ -101,7 +101,7 @@ public class Field {
     }
     public boolean haveWinner() {
         //is enough turns for win combination?
-        if(emptyCells > fieldSize*fieldSize-fieldSize)
+        if(emptyCells > fieldSize*fieldSize-fieldSize+fieldSize/2)
             return false;
         if(checkWinDiagonal(0)) {
             winner = gameField[0][0];
